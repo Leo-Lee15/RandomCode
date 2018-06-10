@@ -11,3 +11,11 @@ import::from(magrittr, `%>%`)
 2. [Data Wrangling Part 2: Transforming your columns into the right shape](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/)
 3. [Data Wrangling Part 3: Basic and more advanced ways to filter rows](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/)
 4. [Data Wrangling Part 4: Summarizing and slicing your data](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/)
+
+### `tidyverse`系列编程
+[Writing Custom Tidyverse Functions](http://jonthegeek.com/2018/06/04/writing-custom-tidyverse-functions/)
+
+[A closer look at replicate() and purrr::map() for simulations](https://aosmith.rbind.io/2018/06/05/a-closer-look-at-replicate-and-purrr/)
+
+### R语言字符串处理在线教程
+[Handling Strings with R](http://www.gastonsanchez.com/r4strings/index.html)
