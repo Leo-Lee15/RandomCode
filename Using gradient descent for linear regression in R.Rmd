@@ -21,6 +21,8 @@ For multivariate regression, we have
 $$
 Y =  X\beta + e
 $$
+
+
 The estimated coefficients $\beta$ is 
 $$
 \hat{\beta} = (X'X)^{-1}X'Y
