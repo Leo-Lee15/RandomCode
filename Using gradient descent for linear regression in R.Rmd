@@ -1,0 +1,139 @@
+---
+title: "Using gradient descent for linear regression in R"
+author: "Mike Fang"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>")
+```
+
+
+
+Dr. Ng showed how to use gradient descent to find the linear regression fit in matlab. Here is a demonstration of how to implement it in R. The syntax of matlab and R differs a lot in vector/matrix indexing, but the idea is the same.
+
+For multivariate regression, we have
+$$
+Y =  X\beta + e
+$$
+The estimated coefficients $\beta$ is 
+$$
+\hat{\beta} = (X'X)^{-1}X'Y
+$$
+
+
+
+### First, let’s generate some data to work with, let’s define our training example with 4 features:
+
+```{r collapse=TRUE}
+set.seed(11)
+x <- matrix(rnorm(400), ncol = 4)
+y <- rnorm(100)
+m <- length(y)
+X <- cbind(rep(1, 100), x)
+theta <- rep(0,5)
+```
+
+```{r collapse=TRUE}
+head(x)
+head(X)
+```
+
+We first use the `lm` function in base R to run a regression of $y$ on $X$.
+```{r collapse=TRUE}
+r_lm_mod <- lm(y ~ X - 1)
+r_lm_mod
+```
+
+We can use the above formula to calculate the coefficients, and the results are in the following:
+```{r collapse=TRUE}
+beta <- solve(t(X) %*%  X) %*% t(X) %*% y
+beta
+```
+
+
+
+### Second, set up the cost function for least square linear regression:
+```{r collapse=TRUE}
+cost <- function(X, y, theta){
+   m <- length(y)
+   J <- sum((X %*% theta - y) ^ 2) / (2 * m)
+   return(J)
+}
+```
+
+### Next, set up the gradient descent function, running for iterations:
+```{r collapse=TRUE}
+grad_descent <- function(X, y, theta, alpha, num_iters){
+  m <- length(y)
+  J_hist <- rep(0, num_iters)
+  for(i in 1:num_iters){
+
+# this is a vectorized form for the gradient of the cost function
+# X is a 100 x 5 matrix, theta is a 5x1 column vector, y is a 100x1 column vector
+# X transpose is a 5 x 100 matrix. So t(X)%*%(X%*%theta - y) is a 5x1 column vector
+    theta <- theta - alpha * (1 / m) * (t(X) %*% (X %*% theta - y))
+    
+# this for-loop records the cost history for every iterative move of the gradient descent,
+# and it is obtained for plotting number of iterations against cost history.
+    J_hist[i]  <- cost(X, y, theta)
+  }
+# for a R function to return two values, we need to use a list to store them:
+  results <- list(theta, J_hist)
+  return(results)
+}
+```
+
+
+### Then, let’s set a training rate alpha and number of iterations to perform gradient descent:
+```{r collapse=TRUE}
+alpha <- 0.1
+num_iters <- 150
+results <- grad_descent(X, y, theta, alpha, num_iters)
+theta <- results[[1]]
+cost_hist <- results[[2]]
+print(theta)
+print(r_lm_mod)
+print(cost_hist)
+```
+
+
+### Finally let’s plot the cost history:
+```{r collapse=TRUE}
+plot(1:num_iters, cost_hist, type = 'l', xlab = "Number of Iterations", 
+     ylab = "Cost History")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
