@@ -19,3 +19,21 @@ import::from(magrittr, `%>%`)
 
 ### R语言字符串处理在线教程
 [Handling Strings with R](http://www.gastonsanchez.com/r4strings/index.html)
+
+-------------------
+
+# 自己造轮子系列
+
+### R语言实现`逻辑回归`
+
+[Logistic Regression with R: step by step implementation part-1](http://pingax.com/logistic-regression-wirh-r-step-by-step-implementation-part-1/)
+
+[Logistic Regression with R: step by step implementation part-2](http://pingax.com/logistic-regression-r-step-step-implementation-part-2/)
+
+### R语言实现梯度下降算法
+[CBMM Tutorial: Optimization Notes](https://cbmm.mit.edu/sites/default/files/documents/CBMM_Optimization_Notes.html#single-variable_optimization)
+
+[Using gradient descent for linear regression in R](https://rpubs.com/fhlgood/graddescentlr)
+
+
+
