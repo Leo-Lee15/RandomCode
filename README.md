@@ -46,6 +46,9 @@ import::from(magrittr, `%>%`)
 #### KNN
 [Create your Machine Learning library from scratch with R ! (3/5) – KNN](http://enhancedatascience.com/2018/05/23/create-your-machine-learning-library-from-scratch-with-r-3-5-knn/)
 
+
+-----------------------------
+
 # 有用的博客
 
 ### 关于R语言的一些小技巧，时间序列，量化方面
@@ -57,8 +60,8 @@ import::from(magrittr, `%>%`)
 ### R语言机器学习干货
 [Enhance datascience](http://enhancedatascience.com/)
 
-### R语言可视化
-
+### R语言时间序列干货
+[Business-science](http://www.business-science.io/blog/index.html)
 
 
 
