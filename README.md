@@ -63,7 +63,8 @@ import::from(magrittr, `%>%`)
 ### R语言时间序列干货
 [Business-science](http://www.business-science.io/blog/index.html)
 
-
+### R语言tricks
+[Why your S3 method isn't working](https://edwinth.github.io/blog/s3-generics/)
 
 
 
