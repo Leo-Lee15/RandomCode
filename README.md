@@ -23,6 +23,8 @@ import::from(magrittr, `%>%`)
 ### R语言高级编程
 [Why your S3 method isn't working](https://edwinth.github.io/blog/s3-generics/)
 
+[Non-standard evaluation, how tidy eval builds on base R](https://edwinth.github.io/blog/nse/)
+
 
 -------------------
 
@@ -70,7 +72,7 @@ import::from(magrittr, `%>%`)
 ### R语言tricks
 [Ryan Timpe](http://www.ryantimpe.com/#posts)
 
-
+[Ariel Muldoon](https://aosmith.rbind.io/)
 
 
 
