@@ -20,6 +20,10 @@ import::from(magrittr, `%>%`)
 ### R语言字符串处理在线教程
 [Handling Strings with R](http://www.gastonsanchez.com/r4strings/index.html)
 
+### R语言高级编程
+[Why your S3 method isn't working](https://edwinth.github.io/blog/s3-generics/)
+
+
 -------------------
 
 # 自己造轮子系列
@@ -64,7 +68,8 @@ import::from(magrittr, `%>%`)
 [Business-science](http://www.business-science.io/blog/index.html)
 
 ### R语言tricks
-[Why your S3 method isn't working](https://edwinth.github.io/blog/s3-generics/)
+[Ryan Timpe](http://www.ryantimpe.com/#posts)
+
 
 
 
