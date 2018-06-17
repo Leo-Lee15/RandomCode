@@ -74,6 +74,10 @@ import::from(magrittr, `%>%`)
 
 [Ariel Muldoon](https://aosmith.rbind.io/)
 
+### R语言与量化金融
+[Reproducible Finance](http://www.reproduciblefinance.com/code/)
+
+[R Views](https://rviews.rstudio.com/)
 
 
 
