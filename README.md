@@ -72,6 +72,8 @@ import::from(magrittr, `%>%`)
 ### R语言tricks
 [Ryan Timpe](http://www.ryantimpe.com/#posts)
 
+[Win-Vector Blog](http://www.win-vector.com/blog/)
+
 [Ariel Muldoon](https://aosmith.rbind.io/)
 
 ### R语言与量化金融
@@ -79,6 +81,8 @@ import::from(magrittr, `%>%`)
 
 [R Views](https://rviews.rstudio.com/)
 
+### R语言可视化
+[STATWORX Blog](https://www.statworx.com/de/blog/coordinate-systems-in-ggplot2-easily-overlooked-and-rather-underrated/)
 
 
 
