@@ -84,5 +84,6 @@ import::from(magrittr, `%>%`)
 ### R语言可视化
 [STATWORX Blog](https://www.statworx.com/de/blog/coordinate-systems-in-ggplot2-easily-overlooked-and-rather-underrated/)
 
-
+### R语言计量经济学
+[Export R output to a file](http://www.brodrigues.co/blog/2015-02-22-export-r-output-to-file/)
 
