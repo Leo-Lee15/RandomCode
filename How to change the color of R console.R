@@ -1,3 +1,5 @@
+# use `crayon` package to change the color of R console
+# Source: https://aghaynes.wordpress.com/2018/07/12/coloured-output-in-the-r-console/
 devtools::install_github("r-lib/crayon")
 library(crayon)
 cat(green(
