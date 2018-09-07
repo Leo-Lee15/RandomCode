@@ -6,6 +6,15 @@ This repository records the learning of R, Python, etc.
 import::from(magrittr, `%>%`)
 ```
 
+### 当需要使用某个包的函数，但又不必下载该包的解决办法
+```r
+out <- if (requireNamespace("pbapply", quietly = TRUE)) {
+   pbapply::pblapply(X, FUN, ...)
+} else {
+   lapply(X, FUN, ...)
+}
+```
+
 ### `dplyr`包详细教程
 1. [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
 2. [Data Wrangling Part 2: Transforming your columns into the right shape](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/)
