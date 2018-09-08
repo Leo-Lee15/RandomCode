@@ -96,3 +96,8 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 ### R语言计量经济学
 [Export R output to a file](http://www.brodrigues.co/blog/2015-02-22-export-r-output-to-file/)
 
+[How does Collinearity Influence Linear Regressions?](http://www.favstats.eu/post/multicol_sim/)
+
+
+
+
