@@ -1,12 +1,16 @@
-# RandomCode
+# Little R tricks
 This repository records the learning of R, Python, etc.
 
 ### 当需要使用管道操作符的时候，无需直接加载`magrittr`包，直接使用下面的语句即可
 ```r
 import::from(magrittr, `%>%`)
 ```
+或者
+```r
+`%>%` <- magrittr::`%>%`
+```
 
-### 当需要使用某个包的函数，但又不必下载该包的解决办法
+### 当需要使用某个包的函数，但又不至于缺乏该包无法运行的解决办法
 ```r
 out <- if (requireNamespace("pbapply", quietly = TRUE)) {
    pbapply::pblapply(X, FUN, ...)
