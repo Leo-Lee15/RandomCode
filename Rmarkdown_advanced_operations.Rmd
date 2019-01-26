@@ -1,0 +1,341 @@
+---
+title: "Rmarkdown高级应用"
+author: "Leo Lee"
+date: "`r Sys.Date()`"
+output:
+  html_document:    
+    keep_md: true           # 保留生成的.md文件
+    number_sections: yes    # 给每一个层级标上数字
+    toc: yes                # 显示目录
+    toc_depth: 3            # 最大层级
+    toc_float:              # 目录悬浮
+      collapsed: true       # 是否折叠
+      smooth_scroll: true   # 悬浮的目录窗格是否滚动
+    highlight: tango        # 代码高亮格式, 这个格式看起来不那么辣眼睛
+    theme: readable         # html文档主题, 这个主题看起来还不错
+    df_print: paged         # 美观的数据框打印方式
+    code_folding: show      # 默认展示所有R代码
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,  comment = "#>", cache = TRUE, warning = FALSE, error = TRUE)
+```
+
+
+I made this because I needed to do some really simple examples to get started with gt. Here are a few different gt tables that worked, using short examples with data existing in the *datasets* package or that I create here. 
+
+我所尝试的例子: 
+
+- 示例 0: A first shot at just making the damn thing
+- 示例 1: Customizing title, column headers, and digits
+- 示例 2: Updating cell colors and adding footnotes
+- 示例 3: Updating NAs and hiding columns
+- 示例 4: Scientific notation! 
+- 示例 5: Formatted dates and column spanning labels
+
+Overall feelings about gt: so awesome and user friendly I can hardly stand it. Make sure to check out the beautiful and wonderfully easy-to-follow documentation for the gt package: 
+
+<https://github.com/rstudio/gt>
+
+# 加载包
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(gt)
+```
+
+# 打印数据框 {.tabset .tabset-fade .tabset-pills}
+
+Option | Description
+-- | --
+max.print | The number of rows to print.
+rows.print | The number of rows to display.
+cols.print | The number of columns to display.
+cols.min.print | The minimum number of columns to display.
+pages.print | The number of pages to display under page navigation.
+paged.print | When set to FALSE turns off paged tables.
+rownames.print | When set to FALSE turns off row names.
+
+`{r cols.print=3, rows.print=3}`控制打印的数据框的行和列数
+```{r cols.print=10, rows.print=15, max.print=200}
+mtcars %>% 
+  mutate(
+    col1 = 'a',
+    col2 = 'b',
+    col3 = 'c',
+    col4 = 'd'
+  )
+```
+
+
+
+# 示例 {.tabset}
+
+## 示例 0 
+###It really just works...
+
+Make a table of the first 5 observations in the 'rock' dataset.
+
+
+```{r}
+rock %>% # Get 'rock' data
+  head(5) %>% # First 5 lines only
+  gt() # Make a table, it just works. 
+
+```
+
+## 示例 1
+### The first try at customization.
+
+Biological oxygen demand table (BOD)
+
+Use the built-in dataset BOD to create a simple customized table. The BOD dataset (see ?BOD for documentation) has two columns: **Time** and **demand** (both numeric).
+
+```{r}
+
+BOD %>% # Get the data...
+gt() %>% # use 'gt' to make an awesome table...
+  tab_header( 
+    title = "BOD Table Woooooo!", # ...with this title
+    subtitle = "Hooray gt!") %>% # and this subtitle
+  fmt_number( # A column (numeric data)
+    columns = vars(Time), # What column variable? BOD$Time
+    decimals = 2 # With two decimal places
+    ) %>% 
+  fmt_number( # Another column (also numeric data)
+    columns = vars(demand), # What column variable? BOD$demand
+    decimals = 1 # I want this column to have one decimal place
+  ) %>% 
+  cols_label(Time = "Time (hours)", demand = "Demand (mg/L)") # Update labels
+
+``` 
+
+## 示例 2 
+###The one where I added colors and footnotes 
+
+ToothGrowth (VitC effect on tooth growth in guinea pigs)
+
+See ?ToothGrowth for dataset documentation. The ToothGrowth dataset has three variables: **len** (tooth length), **supp** (supplement ID), **dose** (dosage). I use group_by + summarize here to find mean tooth length grouped by supplement and dosage first, then create a table of the means. 
+
+```{r}
+
+# Some wrangling (grouped means by supplement + dosage):
+
+tooth_length <- ToothGrowth %>% 
+  group_by(supp, dose) %>% 
+  summarize(
+    mean_len = mean(len)
+  ) %>% 
+  as_tibble() 
+
+# A gt table: 
+tooth_length %>% # Take tooth_length
+  gt() %>% # Make a gt table with it
+  tab_header(
+    title = "A title just like that", # Add a title
+    subtitle = "(with something below it!)" # And a subtitle
+  ) %>%
+  fmt_passthrough( # Not sure about this but it works...
+    columns = vars(supp) # First column: supp (character)
+  ) %>% 
+  fmt_number(
+    columns = vars(mean_len), # Second column: mean_len (numeric)
+    decimals = 2 # With 4 decimal places
+  ) %>% 
+  fmt_number(
+    columns = vars(dose), # Third column: dose (numeric)
+    decimals = 2 # With 2 decimal places
+  ) %>% 
+  data_color( # Update cell colors...
+    columns = vars(supp), # ...for supp column!
+    colors = scales::col_factor( # <- bc it's a factor
+      palette = c(
+        "green","cyan"), # Two factor levels, two colors
+      domain = c("OJ","VC")# Levels
+  )
+  ) %>% 
+  data_color( # Update cell colors...
+    columns = vars(dose), # ...for dose column 
+    colors = scales::col_numeric( # <- bc it's numeric
+      palette = c(
+        "yellow","orange"), # A color scheme (gradient)
+      domain = c(0.5,2) # Column scale endpoints
+  )
+  ) %>% 
+  data_color( # Update cell colors...
+    columns = vars(mean_len), # ...for mean_len column
+    colors = scales::col_numeric(
+      palette = c(
+        "red", "purple"), # Overboard colors! 
+      domain = c(7,27) # Column scale endpoints
+  )
+  ) %>% 
+  cols_label(supp = "Supplement", dose = "Dosage (mg/d)", mean_len = "Mean Tooth Length") %>% # Make the column headers
+  tab_footnote(
+    footnote = "Baby footnote test", # This is the footnote text
+    locations = cells_column_labels(
+      columns = vars(supp) # Associated with column 'supp'
+      )
+    ) %>% 
+    tab_footnote(
+    footnote = "A second footnote", # Another line of footnote text
+    locations = cells_column_labels( 
+      columns = vars(dose) # Associated with column 'dose'
+      )
+    )
+
+```
+
+## 示例 3 
+### Updating NAs, hiding columns
+
+Using first 10 observations in the 'airquality' dataset. Existing variables: **Ozone**, **Solar.R**, **Wind**, **Temp**, **Month**, **Day** 
+
+```{r}
+
+airquality %>% # Take the 'airquality' dataset...
+  head(10) %>% # Then just grab the first 10 observations...
+  gt() %>% # Then make a gt table
+  tab_header(
+    title = "Air Quality dataset", # Add a title
+    subtitle = "...also with a subtitle" # And a subtitle
+  ) %>%
+  fmt_missing( # Then reassign the 'NA' values to something new
+    columns = vars(Ozone), # For variable 'Ozone', make "NA"s
+    missing_text = "Teddy" # ...to "Teddy" instead
+  ) %>% 
+  fmt_missing( # Reassign NAs for another column
+    columns = vars(Solar.R), # For variable 'Solar.R', make "NA"s
+    missing_text = "Dog" # ...to "Dog" instead
+  ) %>% 
+  cols_hide( # Then hide the 'Wind' and 'Month' variables
+    columns = vars(Wind, Month)
+  )
+
+```
+
+## 示例 4 
+### Scientific notation (...and more colors, can't help it...) 
+
+I'll just make some data here (tibble 'fake'): 
+
+```{r}
+
+fake <- tribble( # Create a tibble...
+  ~Species, ~Height, ~Mass, # These will be the column names (variables)
+  "Blarg", 20500, 1980, # Row 1
+  "Gorple", 17000, 775, # Row 2
+  "Roglob", 11820, 20, # Row 3
+  "Fwerpy", 8005, 352 # Row 4
+) %>% 
+  arrange(-Mass) # Arrange high-to-low by values in Mass column
+
+```
+
+Then make a little table of 'fake' with values in scientific notation:
+
+```{r}
+
+fake %>% 
+  gt() %>% 
+  tab_header(
+    title = "Fake species data", # Add a title
+    subtitle = "another useful subtitle" # And a subtitle
+  ) %>%
+  fmt_scientific( # Reformat to scientific notation...
+    columns = vars(Height), # The values for the 'Height' variable
+    decimals = 3 # Keeping 3 decimal places
+  ) %>% 
+  fmt_scientific( # Reformat to scientific notation...
+    columns = vars(Mass), # The values for the 'Mass' variable
+    decimals = 1 # Keeping 1 decimal place
+  ) %>% 
+  data_color( # Update cell colors...
+    columns = vars(Mass), # ...for Mass column 
+    colors = scales::col_numeric( # <- bc it's numeric
+      palette = c(
+        "yellow", "red", "purple"), # A color scheme (gradient)
+      domain = c(1e1, 2e3) # Column scale endpoints
+  )
+  )
+  
+
+```
+
+## 示例 5 
+### Date formatting + column spanning labels
+
+First, I'll make a little tibble with dates:
+
+```{r}
+
+date_trial <- tribble( # Create a tibble...
+  ~Date, ~Temp, ~Rain, ~Flavor, # These will be the variables (column names)
+  "1980-01-04", 75, 0.4, "Grape", # Row 1 
+  "1975-05-28", 80, 0.2, "Strawberry", # Row 2
+  "1993-09-02", 94, 0.1, "Chocolate" # Row 3
+)
+
+```
+
+Then into a nice table: 
+
+```{r}
+
+date_trial %>% 
+  gt() %>% 
+  fmt_date(
+    columns = vars(Date),
+    date_style = 5 # Try different numbers here to reformat! So cool!
+  ) %>% 
+  tab_spanner(
+    label = "Weather",
+    columns = vars(Temp, Rain)
+  )
+
+```
+
+# 复杂示例 {.tabset}
+
+
+## 示例 1
+```{r}
+library(gt)
+library(tidyverse)
+library(glue)
+
+# Define the start and end dates for the data range
+start_date <- "2010-06-07"
+end_date <- "2010-06-14"
+
+# Create a gt table based on preprocessed
+# `sp500` table data
+sp500 %>%
+  dplyr::filter(date >= start_date & date <= end_date) %>%
+  dplyr::select(-adj_close) %>%
+  dplyr::mutate(date = as.character(date)) %>%
+  gt() %>%
+  tab_header(
+    title = "S&P 500",
+    subtitle = glue::glue("{start_date} to {end_date}")
+  ) %>%
+  fmt_date(
+    columns = vars(date),
+    date_style = 3
+  ) %>%
+  fmt_currency(
+    columns = vars(open, high, low, close),
+    currency = "USD"
+  ) %>%
+  fmt_number(
+    columns = vars(volume),
+    scale_by = 1 / 1E9,
+    pattern = "{x}B"
+  )
+```
+
+
+
+
+
+
+

@@ -19,6 +19,11 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 }
 ```
 
+### `tidyeval`教程
+
+1. [Tidy evaluation](https://tidyeval.tidyverse.org/index.html)
+
+
 ### `dplyr`包详细教程
 1. [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
 2. [Data Wrangling Part 2: Transforming your columns into the right shape](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/)
@@ -102,6 +107,7 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 
 [How does Collinearity Influence Linear Regressions?](http://www.favstats.eu/post/multicol_sim/)
 
-
+### Rmarkdown tricks
+[Pimp my RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/)
 
 
