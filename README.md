@@ -111,3 +111,23 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 [Pimp my RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/)
 
 
+### `shiny`资源
+
+#### shiny应用加密
+
+[shinymanager包](https://github.com/datastorm-open/shinymanager) <强烈推荐>
+
+[shinyauthr包](https://github.com/PaulC91/shinyauthr) <写起来相对于shinymanager包更为复杂>
+
+
+
+
+
+
+
+
+
+
+
+
+
