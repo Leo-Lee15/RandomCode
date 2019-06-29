@@ -119,7 +119,11 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 
 [shinyauthr包](https://github.com/PaulC91/shinyauthr) <写起来相对于shinymanager包更为复杂>
 
+### 在R脚本中加密敏感信息
+#### keyring包用法
 
+[HOW TO HIDE A PASSWORD IN R WITH THE KEYRING PACKAGE
+](http://theautomatic.net/2019/06/25/how-to-hide-a-password-in-r-with-the-keyring-package/)
 
 
 
