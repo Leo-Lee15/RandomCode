@@ -125,7 +125,7 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 [HOW TO HIDE A PASSWORD IN R WITH THE KEYRING PACKAGE
 ](http://theautomatic.net/2019/06/25/how-to-hide-a-password-in-r-with-the-keyring-package/)
 
-
+[https://support.rstudio.com/hc/en-us/articles/360000969634-Using-Keyring](https://support.rstudio.com/hc/en-us/articles/360000969634-Using-Keyring)
 
 
 
