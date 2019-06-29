@@ -127,7 +127,9 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 
 [https://support.rstudio.com/hc/en-us/articles/360000969634-Using-Keyring](https://support.rstudio.com/hc/en-us/articles/360000969634-Using-Keyring)
 
+### 其他
 
+[https://stackoverflow.com/questions/7481799/convert-a-file-encoding-using-r-ansi-to-utf-8](https://stackoverflow.com/questions/7481799/convert-a-file-encoding-using-r-ansi-to-utf-8)
 
 
 
