@@ -135,6 +135,12 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 
 [From H2O to POJO Models](https://www.onceupondata.com/2019/07/13/h2o-pojo-models/)
 
+### tidyeval相关
+
+[Once Upon Data](https://www.onceupondata.com/)
+
+
+
 
 
 ### 其他
