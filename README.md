@@ -127,6 +127,12 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 
 [https://support.rstudio.com/hc/en-us/articles/360000969634-Using-Keyring](https://support.rstudio.com/hc/en-us/articles/360000969634-Using-Keyring)
 
+### 文本分析
+
+[Visualizing Locke and Mill: a tidytext analysis](https://sethdobson.netlify.com/2019/07/24/visualizing-locke-and-mill-a-tidytext-analysis/)
+
+
+
 ### 其他
 
 [https://stackoverflow.com/questions/7481799/convert-a-file-encoding-using-r-ansi-to-utf-8](https://stackoverflow.com/questions/7481799/convert-a-file-encoding-using-r-ansi-to-utf-8)
