@@ -131,6 +131,10 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 
 [Visualizing Locke and Mill: a tidytext analysis](https://sethdobson.netlify.com/2019/07/24/visualizing-locke-and-mill-a-tidytext-analysis/)
 
+### h2o包相关
+
+[From H2O to POJO Models](https://www.onceupondata.com/2019/07/13/h2o-pojo-models/)
+
 
 
 ### 其他
