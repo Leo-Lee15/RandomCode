@@ -110,6 +110,9 @@ out <- if (requireNamespace("pbapply", quietly = TRUE)) {
 ### Rmarkdown tricks
 [Pimp my RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/)
 
+### 未分类
+[https://tysonbarrett.com/](https://tysonbarrett.com/)
+
 
 ### `shiny`资源
 
